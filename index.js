@@ -9,7 +9,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 
 app.use(cors({
-    origin: process.env.NODE_ENV === 'production' ? 'https://sampleurl.vercel-dns.com' : 'http://localhost:3000',
+    origin: process.env.NODE_ENV === 'production' ? 'https://ircs-final-frontend-ww1a.vercel.app/' : 'http://localhost:3000',
     optionsSuccessStatus: 200,
 }));
 
