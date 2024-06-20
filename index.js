@@ -4,21 +4,32 @@ const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
+const compression = require('compression');
+const helmet = require('helmet');
+const morgan = require('morgan');
 
 app.use(cors({
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200
+    origin: process.env.NODE_ENV === 'production' ? 'https://sampleurl.vercel-dns.com' : 'http://localhost:3000',
+    optionsSuccessStatus: 200,
 }));
 
 app.use(express.json());
 
-require('dotenv').config();
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+  }
+
+app.use(helmet());
+app.use(compression());
+require('dotenv').config({
+    path: process.env.NODE_ENV === 'production' ? '.env.prod' : '.env'
+  });
 const validateToken= require('./Controllers/validateToken');
 const ProjectRoutes = require('./routes/ProjectRoutes');
 const DonatorRoutes = require('./routes/DonatorRoutes');
 const AuthorizationRoutes = require('./routes/AuthorizationRoute');
 const AuthenticateRoute = require('./routes/AuthenticateRoute');
+
 
 
 
