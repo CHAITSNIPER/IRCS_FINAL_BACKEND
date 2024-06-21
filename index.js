@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const helmet = require('helmet');
 const morgan = require('morgan');
+//https://ircs-final-frontend-ww1a.vercel.app
 
 app.use(cors({
     origin: 'https://ircs-final-frontend-ww1a.vercel.app',
