@@ -10,7 +10,7 @@ const morgan = require('morgan');
 //https://ircs-final-frontend-ww1a.vercel.app
 
 app.use(cors({
-    origin: '//https://ircs-final-frontend-ww1a.vercel.app',
+    origin: 'https://ircs-final-frontend-ww1a.vercel.app',
     optionsSuccessStatus: 200,
 }));
 
