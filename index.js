@@ -9,15 +9,15 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 //https://ircs-final-frontend-ww1a.vercel.app
 
-// app.use(cors({
-//     origin: 'https://ircs-final-frontend-ww1a.vercel.app',
-//     optionsSuccessStatus: 200,
-// }));
-
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://ircs-final-frontend-ww1a.vercel.app',
     optionsSuccessStatus: 200,
 }));
+
+// app.use(cors({
+//     origin: 'http://localhost:3000',
+//     optionsSuccessStatus: 200,
+// }));
 
 app.use(express.json());
 
