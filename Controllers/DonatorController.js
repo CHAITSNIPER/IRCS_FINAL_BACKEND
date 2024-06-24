@@ -1,17 +1,18 @@
 const Donator = require('../Models/DonatorSchema');
+const sendEmail = require('./NodeMailer');
 
 module.exports.createDon = async(req,res,next)=>{
     try{
         const {firstname,lastname,email,phone_number,city,state,amount} = req.body;
 
-
         if(!firstname || !email || !phone_number || !city || !state || !amount){
-            return res.status(401).json({msg:'invalid fields',status:false});
+            return res.status(405).json({msg:'invalid fields',status:false});
         }
         const insertingDon = await Donator.create({
             firstname,lastname,email,phone_number,city,state,amount,time: new Date()
         })
         if(insertingDon){
+            sendEmail(insertingDon.email,insertingDon);
             return res.status(200).json({msg:'donator created successfully',status:true,insertingDon});
         }
         else{
