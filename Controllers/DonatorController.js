@@ -37,6 +37,7 @@ module.exports.DonatorsDeets = async(req,res,next)=>{
 module.exports.SearchedDon = async(req,res,next)=>{
     try{
         const firstname = req.params.firstname;
+        
         if(firstname.length === 0){
             const donator = await Donator.find();
             return res.status(201).json({msg:'all users',status:true,donator});
