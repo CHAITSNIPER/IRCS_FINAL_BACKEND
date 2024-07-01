@@ -56,3 +56,23 @@ module.exports.SearchedDon = async(req,res,next)=>{
         next(ex);
     }
 }
+
+module.exports.deleteDonators=async(req,res,next)=>{
+    try{
+        const id = req.params._id;
+        if(!id) return res.status(404).json({status:false,msg:'not recieved'});
+
+        const del = await Donator.findByIdAndDelete(id);
+
+
+        if(del){
+            return res.status(200).json({status:true,msg:'user deleted',del});
+        }
+        else{
+            return res.status(400).json({status:false,msg:'user not deleted'});
+        }
+
+    }catch(ex){
+        next(ex);
+    }
+}
