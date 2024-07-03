@@ -7,17 +7,19 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const helmet = require('helmet');
 const morgan = require('morgan');
+
 //https://ircs-final-frontend-ww1a.vercel.app
 
-app.use(cors({
-    origin: 'https://ircs-final-frontend-ww1a.vercel.app',
-    optionsSuccessStatus: 200,
-}));
-
 // app.use(cors({
-//     origin: 'http://localhost:3000',
+//     origin: 'https://ircs-final-frontend-ww1a.vercel.app',
 //     optionsSuccessStatus: 200,
 // }));
+
+const stripe = require('stripe')(process.env.STRIPE_KEY);
+app.use(cors({
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200,
+}));
 
 
 // bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
@@ -37,7 +39,7 @@ const ProjectRoutes = require('./routes/ProjectRoutes');
 const DonatorRoutes = require('./routes/DonatorRoutes');
 const AuthorizationRoutes = require('./routes/AuthorizationRoute');
 const AuthenticateRoute = require('./routes/AuthenticateRoute');
-
+const messageRoute = require('./routes/messageRoute');
 
 
 
@@ -48,7 +50,7 @@ app.use(bodyParser.urlencoded({limit:'10mb',extended:true}))
 app.use('/projects',ProjectRoutes)
 app.use('/donators', DonatorRoutes);
 app.use('/authorizationRoute',AuthorizationRoutes);
-
+app.use('/Message',messageRoute);
 app.use('/authenticateRoute',validateToken,AuthenticateRoute);
 
 
