@@ -7,19 +7,20 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const ejs = require('ejs');
 
 //https://ircs-final-frontend-ww1a.vercel.app
 
-// app.use(cors({
-//     origin: 'https://ircs-final-frontend-ww1a.vercel.app',
-//     optionsSuccessStatus: 200,
-// }));
-
-const stripe = require('stripe')(process.env.STRIPE_KEY);
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://ircs-final-frontend-ww1a.vercel.app',
     optionsSuccessStatus: 200,
 }));
+
+const stripe = require('stripe')(process.env.STRIPE_KEY);
+// app.use(cors({
+//     origin: 'http://localhost:3000',
+//     optionsSuccessStatus: 200,
+// }));
 
 
 // bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
